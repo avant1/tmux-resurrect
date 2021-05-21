@@ -276,9 +276,9 @@ restore_all_panes() {
 			restore_pane "$line"
 		fi
 	done < $(last_resurrect_file)
-	if is_restoring_pane_contents; then
-		rm "$(pane_contents_dir "restore")"/*
-	fi
+#	if is_restoring_pane_contents; then
+#		rm "$(pane_contents_dir "restore")"/*
+#	fi
 }
 
 handle_session_0() {
@@ -391,6 +391,7 @@ main() {
 		execute_hook "post-restore-all"
 		stop_spinner
 		display_message "Tmux restore complete!"
+    sleep 2; rm "$(pane_contents_dir "restore")"/*
 	fi
 }
 main
